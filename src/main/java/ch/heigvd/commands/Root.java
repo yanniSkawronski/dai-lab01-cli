@@ -12,6 +12,7 @@ import java.nio.charset.StandardCharsets;
         version = "0.0.1",
         subcommands = {
             Case.class,
+            Replace.class,
             Order.class
         },
         scope = CommandLine.ScopeType.INHERIT,
