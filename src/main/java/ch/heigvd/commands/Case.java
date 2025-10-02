@@ -19,13 +19,20 @@ class Lowercase extends Transformation {
     }
 }
 
-@CommandLine.Command(name = "case", description = "Set characters to uppercase or lowercase")
+@CommandLine.Command(name = "case", description = "Set characters to uppercase (default) or lowercase")
 public class Case implements Callable<Integer> {
     @CommandLine.ParentCommand protected Root parent;
 
+    @CommandLine.Option(
+            names = {"-l", "--lowercase"},
+            description = "switches to lowercase",
+            required = false
+    )
+    private boolean is_lowercase;
+
     @Override
     public Integer call() throws Exception {
-        System.out.println("Case Command Called");
-        return 0;
+        Transformation transformation = is_lowercase ? new Lowercase(): new Uppercase();
+        return parent.replace_patterns(transformation);
     }
 }
