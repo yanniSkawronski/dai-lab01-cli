@@ -29,7 +29,8 @@ public class Root {
     @CommandLine.Option(
             names = {"-r", "--repeat"},
             description = "transform all occurrences",
-            required = false
+            required = false,
+            scope = CommandLine.ScopeType.INHERIT
     )
     private boolean repeat;
 
@@ -44,34 +45,18 @@ public class Root {
                 BufferedReader in = new BufferedReader(new FileReader(infile, StandardCharsets.UTF_8));
                 BufferedWriter out = new BufferedWriter(new FileWriter(outfile, StandardCharsets.UTF_8));
         ) {
-            int matched_chars = 0;
-            int read_char;
+            int matched_index;
+            String line;
 
-            while ((read_char = in.read()) != -1) {
-                if (read_char == pattern.charAt(matched_chars)) {
-                    matched_chars++;
-                } else {
-                    if (matched_chars > 0) {
-                        out.write(pattern.substring(0, matched_chars));
-                        matched_chars = 0;
-                        if (read_char == pattern.charAt(0)) {
-                            matched_chars = 1;
-                        } else {
-                            out.write(read_char);
-                        }
-                    }
-                    else {
-                        out.write(read_char);
-                    }
-                }
-                // write transformation
-                if (matched_chars >=  pattern.length()) {
+            while ((line = in.readLine()) != null) {
+                while ((matched_index = line.indexOf(pattern)) != -1) {
+                    out.write(line.substring(0, matched_index));
                     out.write(t.transform(pattern));
-                    matched_chars = 0;
+                    line = line.substring(matched_index + pattern.length());
                 }
+                out.write(line);
+                out.newLine();
             }
-            //dump remaining to write if any
-            out.write(pattern.substring(0, matched_chars));
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
             return 1;
