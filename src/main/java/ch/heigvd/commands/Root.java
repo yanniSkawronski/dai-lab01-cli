@@ -11,7 +11,8 @@ import java.nio.charset.StandardCharsets;
         description = "Applique une transformation à un fichier avec un pattern.",
         version = "0.0.1",
         subcommands = {
-          Case.class
+            Case.class,
+            Replace.class,
         },
         scope = CommandLine.ScopeType.INHERIT,
         mixinStandardHelpOptions = true
