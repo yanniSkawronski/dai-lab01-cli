@@ -9,7 +9,7 @@ public class Case implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        System.out.println("Case Command Called");
+        System.out.println("Case Command Called in: " + parent.infile + " out: " + parent.outfile);
         return 0;
     }
 }

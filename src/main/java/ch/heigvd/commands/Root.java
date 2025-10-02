@@ -16,18 +16,19 @@ import java.util.concurrent.Callable;
         scope = CommandLine.ScopeType.INHERIT,
         mixinStandardHelpOptions = true
 )
-public class Root implements Callable<Integer> {
+public class Root {
 
     @CommandLine.Option(
             names = {"-p", "--pattern"},
             description = "Pattern à utiliser pour la transformation.",
-            required = true
+            required = true,
+            scope = CommandLine.ScopeType.INHERIT
     )
     private String pattern;
 
-    @Override
-    public Integer call() throws Exception {
-        System.out.println("Root Command Called with pattern: " + pattern);
-        return 0;
-    }
+    @CommandLine.Parameters(index = "0", description = "output file", scope =  CommandLine.ScopeType.INHERIT)
+    String infile;
+
+    @CommandLine.Parameters(index = "1", description = "input file", scope =  CommandLine.ScopeType.INHERIT)
+    String outfile;
 }
