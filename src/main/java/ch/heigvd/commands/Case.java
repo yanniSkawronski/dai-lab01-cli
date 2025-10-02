@@ -33,6 +33,6 @@ public class Case implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         Transformation transformation = is_lowercase ? new Lowercase(): new Uppercase();
-        return parent.replace_patterns(transformation);
+        return parent.transform_patterns(transformation);
     }
 }

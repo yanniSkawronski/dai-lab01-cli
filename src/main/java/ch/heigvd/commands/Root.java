@@ -40,7 +40,45 @@ public class Root {
     @CommandLine.Parameters(index = "1", description = "input file", scope =  CommandLine.ScopeType.INHERIT)
     private String outfile;
 
-    public Integer replace_patterns(Transformation t) {
+    public Integer transform_patterns(Transformation t) {
+       if (repeat) {
+           return transform_many(t);
+       } else {
+           return transform_single(t);
+       }
+    }
+
+    private Integer transform_single(Transformation t) {
+        try (
+                BufferedReader in = new BufferedReader(new FileReader(infile, StandardCharsets.UTF_8));
+                BufferedWriter out = new BufferedWriter(new FileWriter(outfile, StandardCharsets.UTF_8));
+        ) {
+            String line;
+
+            while ((line = in.readLine()) != null) {
+                int i = line.indexOf(pattern);
+                if (i != -1) {
+                    out.write(line.substring(0, i));
+                    out.write(t.transform(pattern));
+                    out.write(line.substring(i + pattern.length()));
+                    out.newLine();
+                    break;
+                }
+                out.write(line);
+                out.newLine();
+            }
+            int c;
+            while ((c = in.read()) != -1) {
+                out.write(c);
+            }
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+            return 1;
+        }
+        return 0;
+    }
+
+    private Integer transform_many(Transformation t) {
         try (
                 BufferedReader in = new BufferedReader(new FileReader(infile, StandardCharsets.UTF_8));
                 BufferedWriter out = new BufferedWriter(new FileWriter(outfile, StandardCharsets.UTF_8));
