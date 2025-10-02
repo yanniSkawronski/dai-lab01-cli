@@ -13,6 +13,7 @@ import java.nio.charset.StandardCharsets;
         subcommands = {
             Case.class,
             Replace.class,
+            Order.class
         },
         scope = CommandLine.ScopeType.INHERIT,
         mixinStandardHelpOptions = true
