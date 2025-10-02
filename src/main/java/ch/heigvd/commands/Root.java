@@ -1,5 +1,6 @@
 package ch.heigvd.commands;
 
+import ch.heigvd.Transformation;
 import picocli.CommandLine;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,15 +21,27 @@ public class Root {
 
     @CommandLine.Option(
             names = {"-p", "--pattern"},
-            description = "Pattern à utiliser pour la transformation.",
+            description = "pattern to find in file",
             required = true,
             scope = CommandLine.ScopeType.INHERIT
     )
     private String pattern;
 
+    @CommandLine.Option(
+            names = {"-r", "--repeat"},
+            description = "transform all occurrences",
+            required = false
+    )
+    private boolean repeat;
+
     @CommandLine.Parameters(index = "0", description = "output file", scope =  CommandLine.ScopeType.INHERIT)
-    String infile;
+    private String infile;
 
     @CommandLine.Parameters(index = "1", description = "input file", scope =  CommandLine.ScopeType.INHERIT)
-    String outfile;
+    private String outfile;
+
+    public Integer replace_patterns(Transformation t) {
+        // TODO
+        return 0;
+    }
 }
