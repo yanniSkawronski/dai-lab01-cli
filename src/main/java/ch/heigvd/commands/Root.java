@@ -16,7 +16,8 @@ import java.util.regex.Pattern;
         subcommands = {
             Case.class,
             Replace.class,
-            Order.class
+            Order.class,
+            CaesarCommand.class
         },
         scope = CommandLine.ScopeType.INHERIT,
         mixinStandardHelpOptions = true
