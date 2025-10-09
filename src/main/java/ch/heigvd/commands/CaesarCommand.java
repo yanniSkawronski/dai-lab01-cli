@@ -8,9 +8,11 @@ import java.util.concurrent.Callable;
 class CaesarTransform extends Transformation {
 
     int shift;
+    boolean decipher;
 
-    public CaesarTransform(int shift) {
+    public CaesarTransform(int shift, boolean decipher) {
         this.shift = shift;
+        this.decipher = decipher;
     }
 
     @Override
@@ -19,7 +21,10 @@ class CaesarTransform extends Transformation {
         char[] chars = input.toCharArray();
         for(char c : chars){
             char baseCharacter = Character.isUpperCase(c) ? 'A' : 'a';
-            int newAlphabetPosition = (c - baseCharacter + shift) % 26;
+            int newAlphabetPosition =
+                    decipher ?
+                            (c - baseCharacter + 26 - shift) % 26:
+                            (c - baseCharacter + shift) % 26;
             char newCharacter = (char) (baseCharacter + newAlphabetPosition);
             output += newCharacter;
         }
@@ -38,9 +43,15 @@ public class CaesarCommand implements Callable<Integer> {
     )
     private int shift;
 
+    @CommandLine.Option(
+            names = {"-d", "--decipher"},
+            description = "Deciphers the text"
+    )
+    boolean decipher;
+
     @Override
     public Integer call() throws Exception {
-        CaesarTransform transformation = new CaesarTransform(shift);
+        CaesarTransform transformation = new CaesarTransform(shift, decipher);
         return parent.transform_patterns(transformation);
     }
 }
