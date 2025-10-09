@@ -27,24 +27,21 @@ public class Root {
     @CommandLine.Option(
             names = {"-p", "--pattern"},
             description = "pattern to find in file",
-            required = true,
-            scope = CommandLine.ScopeType.INHERIT
+            required = true
     )
     private String pattern;
 
     @CommandLine.Option(
             names = {"-r", "--repeat"},
             description = "transform all occurrences",
-            required = false,
-            scope = CommandLine.ScopeType.INHERIT
+            required = false
     )
     private boolean repeat;
 
     @CommandLine.Option(
             names = {"-e", "--regex"},
             description = "match regex pattern instead, max 1 match group",
-            required = false,
-            scope = CommandLine.ScopeType.INHERIT
+            required = false
     )
     private boolean regex;
 
