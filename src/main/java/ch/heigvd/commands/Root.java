@@ -10,7 +10,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @CommandLine.Command(
-        name = "transform",
         description = "Applique une transformation à un fichier avec un pattern.",
         version = "0.0.1",
         subcommands = {
