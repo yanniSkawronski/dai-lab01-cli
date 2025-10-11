@@ -1,0 +1,3 @@
+- `java -jar dai-lab01-cli-1.0-SNAPSHOT.jar -er --pattern=[a-zA-Z] input.txt output.txt caesar --shift=7`
+  - Apply caesar cipher to every letter with a shift value of 7
+- `java -jar dai-lab01-cli-1.0-SNAPSHOT.jar -er --pattern=[a-zA-Z] output.txt output-decipher.txt caesar --shift=7 --decipher`

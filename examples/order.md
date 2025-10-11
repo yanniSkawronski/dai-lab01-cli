@@ -1,0 +1,4 @@
+- `java -jar dai-lab01-cli-1.0-SNAPSHOT.jar -p=monde order input.txt output.txt`
+  - Met les lettres du mot "monde" dans l'ordre alphabétique
+- `java -jar dai-lab01-cli-1.0-SNAPSHOT.jar -er -p=[a-zA-Z]+ order input.txt output.txt`
+  - Pour chaque mot, met ses lettres dans l'ordre alphabétique
