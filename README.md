@@ -42,9 +42,16 @@ $ java -jar dai-lab01-cli-1.0-SNAPSHOT.jar -p=<pattern> <infile> <outfile> [COMM
 
 `<outfile>` is the file in which the program will write the content of the `<infile>`, with a certain transformation applied to the pattern.
 
-`[COMMAND]` specifies the transformation applied to the pattern.
+`[COMMAND]` specifies the transformation applied to the pattern. The available transformations are:
 
-Several options are available:
+```
+  case     Set characters to uppercase (default) or lowercase
+  replace  Replaces pattern by substitute text
+  order    Rearrange characters in alphabetical order (very useful, trust me)
+
+```
+
+Several options are also available:
 
 ```
   -e, --regex               match regex pattern instead, max 1 match group
@@ -54,7 +61,7 @@ Several options are available:
 
 ```
 
-## Exemples
+## Examples
 
 ## Authors
 
