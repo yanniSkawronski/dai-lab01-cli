@@ -1,0 +1,2 @@
+java -jar target/dai-lab01-cli-1.0-SNAPSHOT.jar -er --pattern=. input.txt output.txt caesar --shift=7
+java -jar dai-lab01-cli-1.0-SNAPSHOT.jar -er --pattern=. output.txt output-decipher.txt caesar --shift=7 --decipher

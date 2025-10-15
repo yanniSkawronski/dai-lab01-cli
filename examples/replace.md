@@ -1,4 +1,0 @@
-- `java -jar dai-lab01-cli-1.0-SNAPSHOT.jar -p=Bonjour input.txt output.txt replace --substitute="Au revoir"`
-  - Remplace "Bonjour" par "Au revoir"
-- `java -jar dai-lab01-cli-1.0-SNAPSHOT.jar -er -p=[a-zA-Z] input.txt output.txt replace --substitute="*"`
-  - Remplace chaque lettre par une étoile

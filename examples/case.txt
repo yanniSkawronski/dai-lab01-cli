@@ -1,0 +1,4 @@
+java -jar target/dai-lab01-cli-1.0-SNAPSHOT.jar -er -p=[a-h] input.txt output.txt case
+java -jar target/dai-lab01-cli-1.0-SNAPSHOT.jar -p=Bonjour input.txt output.txt case
+java -jar target/dai-lab01-cli-1.0-SNAPSHOT.jar -p=BONJOUR input.txt output.txt case -l
+java -jar target/dai-lab01-cli-1.0-SNAPSHOT.jar -e -p=[A-Za-z] input.txt output.txt case
