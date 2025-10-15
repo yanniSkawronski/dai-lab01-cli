@@ -20,13 +20,16 @@ class CaesarTransform extends Transformation {
         String output = "";
         char[] chars = input.toCharArray();
         for(char c : chars){
-            char baseCharacter = Character.isUpperCase(c) ? 'A' : 'a';
-            int newAlphabetPosition =
-                    decipher ?
-                            (c - baseCharacter + 26 - shift) % 26:
-                            (c - baseCharacter + shift) % 26;
-            char newCharacter = (char) (baseCharacter + newAlphabetPosition);
-            output += newCharacter;
+            if(!Character.isLetter(c)) output += c;
+            else {
+                char baseCharacter = Character.isUpperCase(c) ? 'A' : 'a';
+                int newAlphabetPosition =
+                        decipher ?
+                                (c - baseCharacter + 26 - shift) % 26 :
+                                (c - baseCharacter + shift) % 26;
+                char newCharacter = (char) (baseCharacter + newAlphabetPosition);
+                output += newCharacter;
+            }
         }
         return output;
     }
