@@ -1,8 +1,0 @@
-- `java -jar dai-lab01-cli-1.0-SNAPSHOT.jar -er -p=[a-h] input.txt output.txt case`
-  - Transforme les lettre de a à h en majuscule
-- `java -jar dai-lab01-cli-1.0-SNAPSHOT.jar -p=Bonjour input.txt output.txt case`
-  - Transforme la première occurence de la chaîne "Bonjour" en "BONJOUR"
-- `java -jar dai-lab01-cli-1.0-SNAPSHOT.jar -p=BONJOUR input.txt output.txt case -l`
-  - Transforme la première occurence de la chaîne "BONJOUR" en "bonjour"
-- `java -jar dai-lab01-cli-1.0-SNAPSHOT.jar -e -p=[A-Za-z] input.txt output.txt case`
-  - Transforme la première lettre en majuscule

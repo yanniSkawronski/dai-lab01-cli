@@ -67,8 +67,82 @@ Several options are also available:
 
 ## Examples
 
+### case
+
+You can use the case command to set letters to uppercase:
+```
+java -jar target/dai-lab01-cli-1.0-SNAPSHOT.jar -p=Bonjour examples/basic.txt output.txt case
+cat output.txt
+BONJOUR tout le monde !
+```
+
+or lowercase:
+```
+java -jar target/dai-lab01-cli-1.0-SNAPSHOT.jar -p=Bonjour examples/basic.txt output.txt case
+cat output.txt
+bonjour tout le monde !
+```
+
+### order
+You can use the order command to sort letters
+```
+java -jar target/dai-lab01-cli-1.0-SNAPSHOT.jar -p=monde order examples/basic.txt output.txt
+cat output.txt                                                                               
+Bonjour tout le demno !
+```
+
+Or using the regex option to apply to all words
+```
+java -jar target/dai-lab01-cli-1.0-SNAPSHOT.jar -er -p="\w+" order examples/basic.txt output.txt
+cat output.txt
+Bjnooru ottu el demno !
+```
+
+### replace
+
+sed is overrated, use our solution, the replace subcommand
+
+```
+java -jar target/dai-lab01-cli-1.0-SNAPSHOT.jar -er -p="Jean" replace --substitute Paul examples/replace.txt output.txt
+cat output.txt 
+Bonjour, je m'appelle Paul,
+Paul est un businessman
+Un homme d'affaires
+Employez moi svp!
+        Signé: Paul
+```
+
+### caesar
+
+To ensure the security of your darkest secrets, use the caesar command. Straight from 50 BC, roman quality.
+
+The match group feature lets you even use delimiters
+to encode anything regardless of if you know how it looks.
+
+```
+java -jar ./target/dai-lab01-cli-1.0-SNAPSHOT.jar -rep "#([^#]+)#" caesar -s 3 examples/caesar_encrypt.txt output.txt
+cat output.txt
+This message can contain
+secrets like this one #L dwh wkh fkrfrodwh#
+which will be encrypted
+```
+
+And decode:
+
+```
+java -jar ./target/dai-lab01-cli-1.0-SNAPSHOT.jar -rep "#([^#]+)#" caesar -s 3 -d examples/caesar_decrypt.txt output.txt
+cat output.txt
+This message can contain
+secrets like this one #I ate the chocolate#
+which will be encrypted
+```
+
 ## Authors
+
+To contact us please open an Issue.
+Improvements and bugixes are welcome.
 
 - ![Yanni Skawronski](https://github.com/yanniSkawronski)
 - ![Tadeusz Kondracki](https://github.com/GlysVenture)
 - ![Jules Rossier](https://github.com/julesrossier)
+
