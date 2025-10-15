@@ -17,7 +17,7 @@ $ git clone git@github.com:yanniSkawronski/dai-lab01-cli.git
 ```
 
 Then move into the main folder and compile the package.
-This requires Java Temurin 21 (jdk21) and maven.
+This requires Java Temurin 21 (jdk21).
 
 ```
 $ cd dai-lab01-cli
