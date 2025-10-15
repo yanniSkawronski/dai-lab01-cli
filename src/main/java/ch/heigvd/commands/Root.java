@@ -9,6 +9,9 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Root command for transform picocli app, parent to all other subcommands
+ */
 @CommandLine.Command(
         description = "Applique une transformation à un fichier avec un pattern.",
         version = "0.0.1",
@@ -50,6 +53,11 @@ public class Root {
     @CommandLine.Parameters(index = "1", description = "input file", scope =  CommandLine.ScopeType.INHERIT)
     private String outfile;
 
+    /**
+     * This function transforms one or many patterns using the given transformation
+     * @param t Transformation to apply to patterns found
+     * @return exit code
+     */
     public Integer transform_patterns(Transformation t) {
        if (repeat) {
            return transform_many(t);
@@ -58,6 +66,12 @@ public class Root {
        }
     }
 
+    /**
+     * Transforms only the first pattern found using the given transformation,
+     * pattern must be on a single line
+     * @param t Transformation to apply to the pattern
+     * @return exit code
+     */
     private Integer transform_single(Transformation t) {
         try (
                 BufferedReader in = new BufferedReader(new FileReader(infile, StandardCharsets.UTF_8));
@@ -88,6 +102,12 @@ public class Root {
         return 0;
     }
 
+    /**
+     * Transforms all patterns found using the given transformation,
+     * works line by line
+     * @param t Transformation to apply to the pattern
+     * @return exit code
+     */
     private Integer transform_many(Transformation t) {
         try (
                 BufferedReader in = new BufferedReader(new FileReader(infile, StandardCharsets.UTF_8));
@@ -101,7 +121,8 @@ public class Root {
                 while (match.isPresent()) {
                     out.write(line.substring(0, match.get().start));
                     out.write(t.transform(line.substring(match.get().start, match.get().end)));
-                    line = line.substring(match.get().end);
+                    out.write(line.substring(match.get().end, match.get().next_start));
+                    line = line.substring(match.get().next_start);
                     match = find_match(line);
                 }
                 out.write(line);
@@ -114,16 +135,30 @@ public class Root {
         return 0;
     }
 
-    //bundles match start and end in one object
+    /**
+     * bundles match start and end in one object
+     */
     private class Match {
-        final public int start, end;
+        final public int start, end, next_start;
 
-        public Match(int start, int length) {
+        public Match(int start, int end, int next_start) {
             this.start = start;
-            this.end = length;
+            this.end = end;
+            this.next_start = next_start;
+        }
+
+        public Match(int start, int end) {
+            this.start = start;
+            this.end = end;
+            this.next_start = end;
         }
     }
 
+    /**
+     * Searches pattern in string using regex if enabled
+     * @param s String to search for pattern
+     * @return Match(start, end) of pattern
+     */
     // return index and length of match if exists, using regex if enabled
     private Optional<Match> find_match(String s){
         if (regex) {
@@ -132,7 +167,7 @@ public class Root {
             if (m.find()) {
                 Match match;
                 if (m.groupCount() > 0) {
-                    match = new Match(m.start(0), m.end(0));
+                    match = new Match(m.start(1), m.end(1), m.end(0));
                 } else {
                     match = new Match(m.start(), m.end());
                 }

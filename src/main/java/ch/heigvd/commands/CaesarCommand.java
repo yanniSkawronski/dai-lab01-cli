@@ -5,6 +5,9 @@ import picocli.CommandLine;
 
 import java.util.concurrent.Callable;
 
+/**
+ * Cipher and decipher using caesar encoding. Shifts only the letters.
+ */
 class CaesarTransform extends Transformation {
 
     int shift;
