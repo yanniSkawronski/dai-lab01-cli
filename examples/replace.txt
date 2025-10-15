@@ -1,2 +1,5 @@
-java -jar target/dai-lab01-cli-1.0-SNAPSHOT.jar -p=Bonjour input.txt output.txt replace --substitute="Au revoir"
-java -jar target/dai-lab01-cli-1.0-SNAPSHOT.jar -er -p=[a-zA-Z] input.txt output.txt replace --substitute="*"
+Bonjour, je m'appelle Jean,
+Jean est un businessman
+Un homme d'affaires
+Employez moi svp!
+        Signé: Jean
