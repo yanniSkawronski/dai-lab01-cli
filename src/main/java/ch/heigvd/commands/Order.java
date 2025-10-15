@@ -9,6 +9,11 @@ import picocli.CommandLine;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Rearrange the letters in alphabetical order
+ * The usefulness of such a functionality is left to
+ * the user's judgement.
+ */
 class Orderer extends Transformation {
     @Override
     public String transform(String input) {

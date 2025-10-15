@@ -5,6 +5,9 @@ import picocli.CommandLine;
 
 import java.util.concurrent.Callable;
 
+/**
+ * Replace a pattern by another string
+ */
 class ReplaceBy extends Transformation {
 
     private final String text;
