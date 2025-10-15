@@ -101,7 +101,8 @@ public class Root {
                 while (match.isPresent()) {
                     out.write(line.substring(0, match.get().start));
                     out.write(t.transform(line.substring(match.get().start, match.get().end)));
-                    line = line.substring(match.get().end);
+                    out.write(line.substring(match.get().end, match.get().next_start));
+                    line = line.substring(match.get().next_start);
                     match = find_match(line);
                 }
                 out.write(line);
@@ -116,11 +117,18 @@ public class Root {
 
     //bundles match start and end in one object
     private class Match {
-        final public int start, end;
+        final public int start, end, next_start;
 
-        public Match(int start, int length) {
+        public Match(int start, int end, int next_start) {
             this.start = start;
-            this.end = length;
+            this.end = end;
+            this.next_start = next_start;
+        }
+
+        public Match(int start, int end) {
+            this.start = start;
+            this.end = end;
+            this.next_start = end;
         }
     }
 
@@ -132,7 +140,7 @@ public class Root {
             if (m.find()) {
                 Match match;
                 if (m.groupCount() > 0) {
-                    match = new Match(m.start(0), m.end(0));
+                    match = new Match(m.start(1), m.end(1), m.end(0));
                 } else {
                     match = new Match(m.start(), m.end());
                 }
