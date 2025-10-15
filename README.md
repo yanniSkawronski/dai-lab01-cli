@@ -69,6 +69,6 @@ Several options are also available:
 
 ## Authors
 
-- ![Yanni Skawronski](@yanniSkawronski)
-- ![Tadeusz Kondracki](@GlysVenture)
-- ![Jules Rossier](@julesrossier)
+- ![Yanni Skawronski](github.com/yanniSkawronski)
+- ![Tadeusz Kondracki](github.com/GlysVenture)
+- ![Jules Rossier](github.com/julesrossier)
