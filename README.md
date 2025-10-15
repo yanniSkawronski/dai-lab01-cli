@@ -2,7 +2,11 @@
 
 ## What does it do?
 
-Word transformer is an amazing Java program that looks for a word (of group of words) in a text file, and replace this word with something else. The "something else" is up to the user, as he has different options (encrypt the word with a Caesar code, switch all the letters to uppercase or lowercase, take all the letters and rearrange them in alphabetical order, etc.)
+Word transformer is an amazing Java program that looks for a word (of group of words), line by line, in a text file,
+and replaces this word with something else. The "something else" is up to the user,
+as he has different options (encrypt the word with a Caesar code,
+switch all the letters to uppercase or lowercase, take all the letters and rearrange them in alphabetical order,
+etc.)
 
 ## Installation
 
@@ -12,7 +16,8 @@ The program can be compiled from source. First, clone the repo.
 $ git clone git@github.com:yanniSkawronski/dai-lab01-cli.git
 ```
 
-Then move into the main folder and compile the package. This requires Java to be installed on the computer.
+Then move into the main folder and compile the package.
+This requires Java Temurin 21 (jdk21) and maven.
 
 ```
 $ cd dai-lab01-cli
@@ -29,6 +34,7 @@ $ java -jar dai-lab01-cli-1.0-SNAPSHOT.jar -V
 This should display the version.
 
 ## Usage
+Requires Java.
 
 Using the program looks like this:
 
